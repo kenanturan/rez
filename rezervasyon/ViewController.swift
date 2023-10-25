@@ -83,6 +83,17 @@ class ViewController: UIViewController {
         userAddButton.backgroundColor = .orange
         userAddButton.addTarget(self, action: #selector(goToAddUser), for: .touchUpInside)
         view.addSubview(userAddButton)
+        
+        let reservationsButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: userAddButton.frame.maxY + 20, width: 200, height: 50))
+        reservationsButton.setTitle("Rezervasyonlarım", for: .normal)
+        reservationsButton.backgroundColor = .purple
+        reservationsButton.addTarget(self, action: #selector(goToUserReservations), for: .touchUpInside)
+        view.addSubview(reservationsButton)
+    }
+
+    @objc func goToUserReservations() {
+        let userReservationsVC = UserReservationsViewController()
+        self.navigationController?.pushViewController(userReservationsVC, animated: true)
     }
 
     @objc func goToAddUser() {

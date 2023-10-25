@@ -102,7 +102,7 @@ class DetailViewController: UIViewController {
                 saveUpdatedCapacity(for: currentCourse)
             } else {
                 // Kapasite 0 ise ya da kullanıcı zaten rezervasyon yapmışsa bilgilendirin
-                let alert = UIAlertController(title: "Uyarı", message: "Bu ders için yer kalmamıştır ya da zaten rezervasyon yapmışsınız.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Uyarı", message: "Bu ders için yer kalmamıştır.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Tamam", style: .default))
                 present(alert, animated: true)
             }
@@ -133,11 +133,14 @@ class DetailViewController: UIViewController {
     }
     
     @objc private func handleReserveButtonTap() {
+        print("Rezervasyon butonuna tıklanıldı")
         if let currentUserID = Auth.auth().currentUser?.uid {
             if !course!.reservedUserIDs.contains(currentUserID) {
+                print("Kullanıcı rezervasyon yapmamış, rezervasyon işlemi gerçekleştiriliyor.")
                 handleReservation(actionType: .reserve)
                 didReserve = true
             } else {
+                print("Kullanıcı zaten rezervasyon yapmış.")
                 // Kullanıcı zaten rezervasyon yapmış
                 let alert = UIAlertController(title: "Uyarı", message: "Zaten bu ders için rezervasyon yapmışsınız.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Tamam", style: .default))
@@ -147,11 +150,14 @@ class DetailViewController: UIViewController {
     }
 
     @objc private func handleCancelButtonTap() {
+        print("İptal butonuna tıklanıldı")
         if let currentUserID = Auth.auth().currentUser?.uid {
             if course!.reservedUserIDs.contains(currentUserID) {
+                print("Kullanıcı rezervasyon yapmış, iptal işlemi gerçekleştiriliyor.")
                 handleReservation(actionType: .cancel)
                 didReserve = false
             } else {
+                print("Kullanıcı bu ders için rezervasyon yapmamış.")
                 // Kullanıcı bu ders için rezervasyon yapmamış
                 let alert = UIAlertController(title: "Uyarı", message: "Bu ders için rezervasyon yapmamışsınız.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Tamam", style: .default))
@@ -180,8 +186,9 @@ class DetailViewController: UIViewController {
             print("Capacity and reservedUserIDs updated successfully!")
             
             // Burada didReserve değerini ve UI'ı güncelleyin
-            self.updateUIBasedOnReservationStatus()
-        }
+            self.course?.capacity = course.capacity
+            self.course?.reservedUserIDs = course.reservedUserIDs
+            self.updateUIBasedOnReservationStatus()        }
     }
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		648E0A622AE69E4500355577 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E0A612AE69E4500355577 /* LoginViewController.swift */; };
 		648E0A652AE6AC8000355577 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E0A642AE6AC8000355577 /* UserModel.swift */; };
+		648E0A782AE9BE8900355577 /* UserReservationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E0A772AE9BE8900355577 /* UserReservationsViewController.swift */; };
 		64FF1C3E2AE5C6A3007A98D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF1C3D2AE5C6A3007A98D7 /* AppDelegate.swift */; };
 		64FF1C402AE5C6A3007A98D7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF1C3F2AE5C6A3007A98D7 /* SceneDelegate.swift */; };
 		64FF1C422AE5C6A3007A98D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF1C412AE5C6A3007A98D7 /* ViewController.swift */; };
@@ -28,6 +29,7 @@
 		5F973B1A0A0BE5A4DED5C74E /* Pods-rezervasyon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rezervasyon.debug.xcconfig"; path = "Target Support Files/Pods-rezervasyon/Pods-rezervasyon.debug.xcconfig"; sourceTree = "<group>"; };
 		648E0A612AE69E4500355577 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		648E0A642AE6AC8000355577 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		648E0A772AE9BE8900355577 /* UserReservationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserReservationsViewController.swift; sourceTree = "<group>"; };
 		64FF1C3A2AE5C6A3007A98D7 /* rezervasyon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rezervasyon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64FF1C3D2AE5C6A3007A98D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		64FF1C3F2AE5C6A3007A98D7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				648E0A612AE69E4500355577 /* LoginViewController.swift */,
 				648E0A642AE6AC8000355577 /* UserModel.swift */,
 				64FF1C412AE5C6A3007A98D7 /* ViewController.swift */,
+				648E0A772AE9BE8900355577 /* UserReservationsViewController.swift */,
 				64FF1C432AE5C6A3007A98D7 /* Main.storyboard */,
 				64FF1C462AE5C6A3007A98D7 /* Assets.xcassets */,
 				64FF1C482AE5C6A3007A98D7 /* LaunchScreen.storyboard */,
@@ -236,6 +239,7 @@
 				64FF1C422AE5C6A3007A98D7 /* ViewController.swift in Sources */,
 				64FF1C582AE5D030007A98D7 /* CoursesListViewController.swift in Sources */,
 				64FF1C522AE5CA02007A98D7 /* AddCourseViewController.swift in Sources */,
+				648E0A782AE9BE8900355577 /* UserReservationsViewController.swift in Sources */,
 				64FF1C3E2AE5C6A3007A98D7 /* AppDelegate.swift in Sources */,
 				64FF1C402AE5C6A3007A98D7 /* SceneDelegate.swift in Sources */,
 				64FF1C5E2AE664BF007A98D7 /* CourseTableViewCell.swift in Sources */,
