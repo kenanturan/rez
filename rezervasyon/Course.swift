@@ -18,6 +18,7 @@ struct Course {
     var endTime: Date
     var currentAttendees: Int
     var capacity: Int
+    var reservedUserIDs: [String]
 
 }
 
@@ -33,6 +34,7 @@ extension Course {
         let endTime = (data["endTime"] as? Timestamp)?.dateValue() ?? Date()
         let currentAttendees = data["currentAttendees"] as? Int ?? 0
         let capacity = data["capacity"] as? Int ?? 0
+        let reservedUserIDs = data["reservedUserIDs"] as? [String] ?? []
 
         
         // Course yapısalının özelliklerini kullanarak bu yapısalı başlatın:
@@ -43,5 +45,6 @@ extension Course {
         self.endTime = endTime
         self.currentAttendees = currentAttendees
         self.capacity = capacity
+        self.reservedUserIDs = reservedUserIDs
     }
 }

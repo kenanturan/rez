@@ -17,7 +17,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
 
-        
         fetchUser { (user) in
             print("Firebase'dan gelen rol: \(user?.role.rawValue ?? "Bilinmiyor")")
             DispatchQueue.main.async {
@@ -30,69 +29,60 @@ class ViewController: UIViewController {
         }
     }
         
-        
-        func setupAdminUI() {
-            // Admin için "Ders Ekle" butonu
-            let addButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: (view.frame.height - 120) / 2, width: 200, height: 50))
-            addButton.setTitle("Ders Ekle", for: .normal)
-            addButton.backgroundColor = .blue
-            addButton.addTarget(self, action: #selector(goToAddCourse), for: .touchUpInside)
-            view.addSubview(addButton)
+    func setupAdminUI() {
+        let addButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: (view.frame.height - 120) / 2, width: 200, height: 50))
+        addButton.setTitle("Ders Ekle", for: .normal)
+        addButton.backgroundColor = .blue
+        addButton.addTarget(self, action: #selector(goToAddCourse), for: .touchUpInside)
+        view.addSubview(addButton)
             
-            // Her kullanıcı için "Dersleri Listele" butonu
-            setupDefaultUI()
-        }
+        setupDefaultUI()
+    }
         
-        @objc func goToAddCourse() {
-            let addCourseVC = AddCourseViewController()
-            self.navigationController?.pushViewController(addCourseVC, animated: true)
-        }
+    @objc func goToAddCourse() {
+        let addCourseVC = AddCourseViewController()
+        self.navigationController?.pushViewController(addCourseVC, animated: true)
+    }
         
-        @objc func goToCoursesList() {
-            let coursesListVC = CoursesListViewController()
-            self.navigationController?.pushViewController(coursesListVC, animated: true)
-        }
+    @objc func goToCoursesList() {
+        let coursesListVC = CoursesListViewController()
+        self.navigationController?.pushViewController(coursesListVC, animated: true)
+    }
         
-        func fetchUser(completion: @escaping (User?) -> Void) {
-            guard let currentUserUID = Auth.auth().currentUser?.uid else {
-                completion(nil)
-                return
-            }
+    func fetchUser(completion: @escaping (User?) -> Void) {
+        guard let currentUserUID = Auth.auth().currentUser?.uid else {
+            completion(nil)
+            return
+        }
             
-            let db = Firestore.firestore()
-            db.collection("users").document(currentUserUID).getDocument { (document, error) in
-                if let document = document, document.exists, let data = document.data() {
-                    let uid = data["uid"] as? String ?? ""
-                    let email = data["email"] as? String ?? ""
-                    let roleString = data["role"] as? String ?? "user"
-                    let role = UserRole(rawValue: roleString) ?? .user
+        let db = Firestore.firestore()
+        db.collection("users").document(currentUserUID).getDocument { (document, error) in
+            if let document = document, document.exists, let data = document.data() {
+                let uid = data["uid"] as? String ?? ""
+                let email = data["email"] as? String ?? ""
+                let roleString = data["role"] as? String ?? "user"
+                let role = UserRole(rawValue: roleString) ?? .user
                     
-                    let user = User(uid: uid, email: email, role: role)
-                    completion(user)
-                } else {
-                    completion(nil)
+                let user = User(uid: uid, email: email, role: role)
+                completion(user)
+            } else {
+                completion(nil)
             }
         }
     }
+
     func setupDefaultUI() {
-        // Dersleri Listele butonu
         let listButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: (view.frame.height) / 2 + 10, width: 200, height: 50))
         listButton.setTitle("Dersleri Listele", for: .normal)
         listButton.backgroundColor = .green
         listButton.addTarget(self, action: #selector(goToCoursesList), for: .touchUpInside)
         view.addSubview(listButton)
 
-        // Kullanıcı Ekle butonu
         let userAddButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: listButton.frame.maxY + 20, width: 200, height: 50))
         userAddButton.setTitle("Kullanıcı Ekle", for: .normal)
         userAddButton.backgroundColor = .orange
         userAddButton.addTarget(self, action: #selector(goToAddUser), for: .touchUpInside)
         view.addSubview(userAddButton)
-        let usersListButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: listButton.frame.maxY + 80, width: 200, height: 50))
-        usersListButton.setTitle("Kullanıcıları Listele", for: .normal)
-        usersListButton.backgroundColor = .purple
-        usersListButton.addTarget(self, action: #selector(showUsersList), for: .touchUpInside)
-        view.addSubview(usersListButton)
     }
 
     @objc func goToAddUser() {
@@ -131,10 +121,6 @@ class ViewController: UIViewController {
         alertController.addAction(cancelAction)
         
         self.present(alertController, animated: true, completion: nil)
-    }
-    @objc func showUsersList() {
-        let usersListVC = UsersListViewController()
-        self.navigationController?.pushViewController(usersListVC, animated: true)
     }
 
 }
