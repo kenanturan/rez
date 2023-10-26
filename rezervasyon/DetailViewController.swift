@@ -17,6 +17,7 @@ class DetailViewController: UIViewController {
         button.setTitle("Rezervasyon Yap", for: .normal)
         return button
     }()
+    
 
     private let cancelReservationButton: UIButton = {
         let button = UIButton(type: .system)
@@ -52,11 +53,11 @@ class DetailViewController: UIViewController {
     private func updateUIBasedOnReservationStatus() {
         if let currentUserID = Auth.auth().currentUser?.uid, let course = course {
             didReserve = course.reservedUserIDs.contains(currentUserID)
-            
             reserveButton.isHidden = didReserve
             cancelReservationButton.isHidden = !didReserve
         }
     }
+
 
     func setupCourseInfo(course: Course) {
         self.course = course
@@ -102,7 +103,7 @@ class DetailViewController: UIViewController {
                 saveUpdatedCapacity(for: currentCourse)
             } else {
                 // Kapasite 0 ise ya da kullanıcı zaten rezervasyon yapmışsa bilgilendirin
-                let alert = UIAlertController(title: "Uyarı", message: "Bu ders için yer kalmamıştır.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Uyarı", message: "Bu ders için yer kalmamıştır ya da zaten rezervasyon yapmışsınız.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Tamam", style: .default))
                 present(alert, animated: true)
             }
@@ -133,14 +134,14 @@ class DetailViewController: UIViewController {
     }
     
     @objc private func handleReserveButtonTap() {
-        print("Rezervasyon butonuna tıklanıldı")
         if let currentUserID = Auth.auth().currentUser?.uid {
             if !course!.reservedUserIDs.contains(currentUserID) {
-                print("Kullanıcı rezervasyon yapmamış, rezervasyon işlemi gerçekleştiriliyor.")
                 handleReservation(actionType: .reserve)
                 didReserve = true
+                
+                // Başarılı geri bildirim
+                courseNameLabel.text = "\(course!.courseName) rezervasyonunuz yapılmıştır."
             } else {
-                print("Kullanıcı zaten rezervasyon yapmış.")
                 // Kullanıcı zaten rezervasyon yapmış
                 let alert = UIAlertController(title: "Uyarı", message: "Zaten bu ders için rezervasyon yapmışsınız.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Tamam", style: .default))
@@ -148,16 +149,18 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    
+
 
     @objc private func handleCancelButtonTap() {
-        print("İptal butonuna tıklanıldı")
         if let currentUserID = Auth.auth().currentUser?.uid {
             if course!.reservedUserIDs.contains(currentUserID) {
-                print("Kullanıcı rezervasyon yapmış, iptal işlemi gerçekleştiriliyor.")
                 handleReservation(actionType: .cancel)
                 didReserve = false
+                
+                // Başarılı geri bildirim
+                courseNameLabel.text = "\(course!.courseName) rezervasyonunuz silinmiştir."
             } else {
-                print("Kullanıcı bu ders için rezervasyon yapmamış.")
                 // Kullanıcı bu ders için rezervasyon yapmamış
                 let alert = UIAlertController(title: "Uyarı", message: "Bu ders için rezervasyon yapmamışsınız.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Tamam", style: .default))
@@ -165,6 +168,7 @@ class DetailViewController: UIViewController {
             }
         }
     }
+
 
 
 
@@ -186,13 +190,37 @@ class DetailViewController: UIViewController {
             print("Capacity and reservedUserIDs updated successfully!")
             
             // Burada didReserve değerini ve UI'ı güncelleyin
-            self.course?.capacity = course.capacity
-            self.course?.reservedUserIDs = course.reservedUserIDs
-            self.updateUIBasedOnReservationStatus()        }
+            self.updateUIBasedOnReservationStatus()
+            self.fetchCourseFromFirebase(courseID: course.id)
+
+        }
     }
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Tamam", style: .default))
         present(alert, animated: true)
+    }
+    private func fetchCourseFromFirebase(courseID: String) {
+        let db = Firestore.firestore()
+        db.collection("courses").document(courseID).getDocument { [weak self] (snapshot, error) in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Failed to fetch course: \(error.localizedDescription)")
+                self.showAlert(title: "Hata", message: "Bir hata oluştu. Lütfen tekrar deneyin.")
+                return
+            }
+            
+            // Burada ekleniyor
+            guard let unwrappedSnapshot = snapshot else {
+                print("Snapshot was nil")
+                return
+            }
+
+            if let fetchedCourse = Course(document: unwrappedSnapshot) {
+                self.course = fetchedCourse
+                self.updateUIBasedOnReservationStatus()
+            }
+        }
     }
 }
