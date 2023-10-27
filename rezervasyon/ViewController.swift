@@ -124,6 +124,22 @@ class ViewController: UIViewController {
                         print("Kullanıcı eklenirken hata oluştu: \(error.localizedDescription)")
                     } else {
                         print("Kullanıcı başarıyla eklendi.")
+
+                        // Buraya Firestore'a kullanıcı bilgisi eklemek için kodları ekleyin
+                        if let user = authResult?.user {
+                            let db = Firestore.firestore()
+                            db.collection("users").document(user.uid).setData([
+                                "uid": user.uid,
+                                "email": user.email ?? "",
+                                "role": "user"  // varsayılan olarak "user" rolü
+                            ]) { (error) in
+                                if let error = error {
+                                    print("Firestore'a kullanıcı eklenirken hata: \(error.localizedDescription)")
+                                } else {
+                                    print("Firestore'a kullanıcı başarıyla eklendi.")
+                                }
+                            }
+                        }
                     }
                 }
             } else {
