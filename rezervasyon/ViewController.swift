@@ -30,6 +30,7 @@ class ViewController: UIViewController {
 
         setupDefaultUI()
     }
+    
 
     @objc func goToAddCourse() {
         let addCourseVC = AddCourseViewController()
@@ -86,7 +87,19 @@ class ViewController: UIViewController {
         reservationsButton.backgroundColor = .purple
         reservationsButton.addTarget(self, action: #selector(goToReservations), for: .touchUpInside)
         view.addSubview(reservationsButton)
+        
+        let viewReservedUsersButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: reservationsButton.frame.maxY + 20, width: 200, height: 50))
+        viewReservedUsersButton.setTitle("Rezervasyon Yapanlar", for: .normal)
+        viewReservedUsersButton.backgroundColor = .red
+        viewReservedUsersButton.addTarget(self, action: #selector(viewReservedUsers), for: .touchUpInside)
+        view.addSubview(viewReservedUsersButton)
+
     }
+    @objc func viewReservedUsers() {
+        let reservationUsersVC = ReservationUsersViewController()
+        self.navigationController?.pushViewController(reservationUsersVC, animated: true)
+    }
+
 
     @objc func goToAddUser() {
         let alertController = UIAlertController(title: "Kullanıcı Ekle", message: "E-posta ve şifre girin", preferredStyle: .alert)
