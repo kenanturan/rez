@@ -4,10 +4,25 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class ViewController: UIViewController {
+    var logoImageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        // Logo için UIImageView oluştur
+        logoImageView = UIImageView(image: UIImage(named: "Kimura.png"))
+        logoImageView.contentMode = .scaleAspectFit // Görüntüyü ölçeklendir
+        logoImageView.translatesAutoresizingMaskIntoConstraints = false // Otomatik oluşturulan kısıtlamaları devre dışı bırak
+        view.addSubview(logoImageView) // Görüntüyü ana görünüme ekleyin
+        
+        // Logo için kısıtlamaları ayarlayın (Örneğin: Ekranın üstünden 20 birim boşluk bırakarak ve genişliği ekranın %80'i olacak şekilde ayarlayın)
+        NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5), // Ekran genişliğinin %50'si
+            logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor)  // Kare şeklinde bir logo varsayılarak ayarlandı.
+        ])
+
         
         fetchUser { (user) in
             print("Firebase'dan gelen rol: \(user?.role.rawValue ?? "Bilinmiyor")")
