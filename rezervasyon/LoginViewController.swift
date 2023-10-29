@@ -7,7 +7,6 @@
 
 import Foundation
 import Firebase
-import FirebaseFirestore
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
@@ -52,6 +51,14 @@ class LoginViewController: UIViewController {
             stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
         ])
     }
+
+//    func redirectToMainScreen() {
+//        let mainVC = ViewController()
+//        let navigationController = UINavigationController(rootViewController: mainVC)
+//        navigationController.modalPresentationStyle = .fullScreen
+//        self.present(navigationController, animated: true)
+//    }
+
 
     @objc private func handleLogin() {
         guard let email = emailTextField.text, !email.isEmpty,

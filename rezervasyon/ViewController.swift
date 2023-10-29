@@ -8,7 +8,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-
+        
         fetchUser { (user) in
             print("Firebase'dan gelen rol: \(user?.role.rawValue ?? "Bilinmiyor")")
             DispatchQueue.main.async {
@@ -19,7 +19,17 @@ class ViewController: UIViewController {
                 }
             }
         }
+        setupLogoutButton()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if Auth.auth().currentUser == nil {
+            // Kullanıcı oturumu kapalı, giriş ekranına yönlendir
+            redirectToLogin()
+        }
+    }
+
 
     func setupAdminUI() {
         let addButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: (view.frame.height - 120) / 2, width: 200, height: 50))
@@ -30,6 +40,30 @@ class ViewController: UIViewController {
 
         setupDefaultUI()
     }
+    func setupLogoutButton() {
+        let logoutButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: view.frame.height - 100, width: 200, height: 50))
+        logoutButton.setTitle("Çıkış Yap", for: .normal)
+        logoutButton.backgroundColor = .darkGray
+        logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
+        view.addSubview(logoutButton)
+    }
+    @objc func logoutTapped() {
+        do {
+            try Auth.auth().signOut()
+            redirectToLogin()
+        } catch let signOutError as NSError {
+            print("Oturumu kapatma hatası: %@", signOutError)
+        }
+    }
+    func redirectToLogin() {
+        let loginVC = LoginViewController()
+        let navigationController = UINavigationController(rootViewController: loginVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true, completion: nil)
+    }
+
+
+
     
 
     @objc func goToAddCourse() {

@@ -14,12 +14,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-        let loginViewController = LoginViewController() // Başlangıç ekranınız olarak LoginViewController ayarlandı
-        let navigationController = UINavigationController(rootViewController: loginViewController)
+        let splashViewController = SplashViewController() // Başlangıç ekranı olarak SplashViewController ayarlandı
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = navigationController
+        window?.rootViewController = splashViewController
         window?.makeKeyAndVisible()
     }
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
