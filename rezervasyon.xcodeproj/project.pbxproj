@@ -10,7 +10,23 @@
 		640F10002AEEB621004D2FFA /* LoginUIComponentsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F0FFF2AEEB621004D2FFA /* LoginUIComponentsBuilder.swift */; };
 		640F10022AEEB639004D2FFA /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10012AEEB639004D2FFA /* FirebaseAuthManager.swift */; };
 		640F10042AEEB65D004D2FFA /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10032AEEB65D004D2FFA /* LoginViewController.swift */; };
-		6418A5672AEAD53400EB0E26 /* ReservationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418A5662AEAD53400EB0E26 /* ReservationsViewController.swift */; };
+		640F10072AEEB949004D2FFA /* CourseUIComponentsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10062AEEB949004D2FFA /* CourseUIComponentsBuilder.swift */; };
+		640F10092AEEB95C004D2FFA /* FirestoreCourseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10082AEEB95C004D2FFA /* FirestoreCourseManager.swift */; };
+		640F100B2AEEB983004D2FFA /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F100A2AEEB983004D2FFA /* AddCourseViewController.swift */; };
+		640F100E2AEEBD18004D2FFA /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F100D2AEEBD18004D2FFA /* CoursesViewModel.swift */; };
+		640F10102AEEBD59004D2FFA /* CoursesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F100F2AEEBD59004D2FFA /* CoursesDataSource.swift */; };
+		640F10122AEEBE07004D2FFA /* CoursesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10112AEEBE07004D2FFA /* CoursesDelegate.swift */; };
+		640F10142AEEC2E8004D2FFA /* CoursesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10132AEEC2E8004D2FFA /* CoursesListViewController.swift */; };
+		640F10172AEEC81A004D2FFA /* ReservationsDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10162AEEC81A004D2FFA /* ReservationsDataSourceDelegate.swift */; };
+		640F10192AEEC8A0004D2FFA /* ReservationsDataFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10182AEEC8A0004D2FFA /* ReservationsDataFetching.swift */; };
+		640F101B2AEECEEE004D2FFA /* ReservationsUISetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F101A2AEECEEE004D2FFA /* ReservationsUISetup.swift */; };
+		640F101D2AEED084004D2FFA /* ReservationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F101C2AEED084004D2FFA /* ReservationsViewController.swift */; };
+		640F10202AEED2DA004D2FFA /* UIDesignHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F101F2AEED2DA004D2FFA /* UIDesignHelper.swift */; };
+		640F10222AEED346004D2FFA /* CoursesDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10212AEED346004D2FFA /* CoursesDataFetcher.swift */; };
+		640F10242AEED369004D2FFA /* CourseDeletionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10232AEED369004D2FFA /* CourseDeletionHelper.swift */; };
+		640F10272AEED6C3004D2FFA /* ReservedUIDesignHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10262AEED6C3004D2FFA /* ReservedUIDesignHelper.swift */; };
+		640F10292AEED775004D2FFA /* ReservedUsersDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640F10282AEED775004D2FFA /* ReservedUsersDataFetcher.swift */; };
+		6418A5672AEAD53400EB0E26 /* ReservationsViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418A5662AEAD53400EB0E26 /* ReservationsViewController2.swift */; };
 		6418A5692AEAEDE700EB0E26 /* ReservationUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418A5682AEAEDE700EB0E26 /* ReservationUsersViewController.swift */; };
 		6418A56C2AEB02E200EB0E26 /* ReservedUsersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418A56B2AEB02E200EB0E26 /* ReservedUsersListViewController.swift */; };
 		648E0A622AE69E4500355577 /* LoginViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 648E0A612AE69E4500355577 /* LoginViewController2.swift */; };
@@ -22,9 +38,9 @@
 		64FF1C452AE5C6A3007A98D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64FF1C432AE5C6A3007A98D7 /* Main.storyboard */; };
 		64FF1C472AE5C6A3007A98D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64FF1C462AE5C6A3007A98D7 /* Assets.xcassets */; };
 		64FF1C4A2AE5C6A3007A98D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 64FF1C482AE5C6A3007A98D7 /* LaunchScreen.storyboard */; };
-		64FF1C522AE5CA02007A98D7 /* AddCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF1C512AE5CA02007A98D7 /* AddCourseViewController.swift */; };
+		64FF1C522AE5CA02007A98D7 /* AddCourseViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF1C512AE5CA02007A98D7 /* AddCourseViewController2.swift */; };
 		64FF1C562AE5CD09007A98D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64FF1C552AE5CD09007A98D7 /* GoogleService-Info.plist */; };
-		64FF1C582AE5D030007A98D7 /* CoursesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF1C572AE5D030007A98D7 /* CoursesListViewController.swift */; };
+		64FF1C582AE5D030007A98D7 /* CoursesListViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF1C572AE5D030007A98D7 /* CoursesListViewController2.swift */; };
 		64FF1C5C2AE63B38007A98D7 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF1C5B2AE63B38007A98D7 /* Course.swift */; };
 		64FF1C5E2AE664BF007A98D7 /* CourseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF1C5D2AE664BF007A98D7 /* CourseTableViewCell.swift */; };
 		64FF1C612AE665FB007A98D7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64FF1C602AE665FB007A98D7 /* DetailViewController.swift */; };
@@ -36,7 +52,23 @@
 		640F0FFF2AEEB621004D2FFA /* LoginUIComponentsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUIComponentsBuilder.swift; sourceTree = "<group>"; };
 		640F10012AEEB639004D2FFA /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
 		640F10032AEEB65D004D2FFA /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		6418A5662AEAD53400EB0E26 /* ReservationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsViewController.swift; sourceTree = "<group>"; };
+		640F10062AEEB949004D2FFA /* CourseUIComponentsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseUIComponentsBuilder.swift; sourceTree = "<group>"; };
+		640F10082AEEB95C004D2FFA /* FirestoreCourseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreCourseManager.swift; sourceTree = "<group>"; };
+		640F100A2AEEB983004D2FFA /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
+		640F100D2AEEBD18004D2FFA /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel.swift; sourceTree = "<group>"; };
+		640F100F2AEEBD59004D2FFA /* CoursesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesDataSource.swift; sourceTree = "<group>"; };
+		640F10112AEEBE07004D2FFA /* CoursesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesDelegate.swift; sourceTree = "<group>"; };
+		640F10132AEEC2E8004D2FFA /* CoursesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListViewController.swift; sourceTree = "<group>"; };
+		640F10162AEEC81A004D2FFA /* ReservationsDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsDataSourceDelegate.swift; sourceTree = "<group>"; };
+		640F10182AEEC8A0004D2FFA /* ReservationsDataFetching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsDataFetching.swift; sourceTree = "<group>"; };
+		640F101A2AEECEEE004D2FFA /* ReservationsUISetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsUISetup.swift; sourceTree = "<group>"; };
+		640F101C2AEED084004D2FFA /* ReservationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsViewController.swift; sourceTree = "<group>"; };
+		640F101F2AEED2DA004D2FFA /* UIDesignHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDesignHelper.swift; sourceTree = "<group>"; };
+		640F10212AEED346004D2FFA /* CoursesDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesDataFetcher.swift; sourceTree = "<group>"; };
+		640F10232AEED369004D2FFA /* CourseDeletionHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDeletionHelper.swift; sourceTree = "<group>"; };
+		640F10262AEED6C3004D2FFA /* ReservedUIDesignHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservedUIDesignHelper.swift; sourceTree = "<group>"; };
+		640F10282AEED775004D2FFA /* ReservedUsersDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservedUsersDataFetcher.swift; sourceTree = "<group>"; };
+		6418A5662AEAD53400EB0E26 /* ReservationsViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsViewController2.swift; sourceTree = "<group>"; };
 		6418A5682AEAEDE700EB0E26 /* ReservationUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationUsersViewController.swift; sourceTree = "<group>"; };
 		6418A56B2AEB02E200EB0E26 /* ReservedUsersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservedUsersListViewController.swift; sourceTree = "<group>"; };
 		648E0A612AE69E4500355577 /* LoginViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController2.swift; sourceTree = "<group>"; };
@@ -50,9 +82,9 @@
 		64FF1C462AE5C6A3007A98D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64FF1C492AE5C6A3007A98D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		64FF1C4B2AE5C6A3007A98D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		64FF1C512AE5CA02007A98D7 /* AddCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController.swift; sourceTree = "<group>"; };
+		64FF1C512AE5CA02007A98D7 /* AddCourseViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCourseViewController2.swift; sourceTree = "<group>"; };
 		64FF1C552AE5CD09007A98D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		64FF1C572AE5D030007A98D7 /* CoursesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListViewController.swift; sourceTree = "<group>"; };
+		64FF1C572AE5D030007A98D7 /* CoursesListViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesListViewController2.swift; sourceTree = "<group>"; };
 		64FF1C5B2AE63B38007A98D7 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		64FF1C5D2AE664BF007A98D7 /* CourseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseTableViewCell.swift; sourceTree = "<group>"; };
 		64FF1C602AE665FB007A98D7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +123,64 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
+		640F10052AEEB925004D2FFA /* AddCourse */ = {
+			isa = PBXGroup;
+			children = (
+				64FF1C512AE5CA02007A98D7 /* AddCourseViewController2.swift */,
+				640F10062AEEB949004D2FFA /* CourseUIComponentsBuilder.swift */,
+				640F10082AEEB95C004D2FFA /* FirestoreCourseManager.swift */,
+				640F100A2AEEB983004D2FFA /* AddCourseViewController.swift */,
+			);
+			name = AddCourse;
+			sourceTree = "<group>";
+		};
+		640F100C2AEEBCFB004D2FFA /* CoursesList */ = {
+			isa = PBXGroup;
+			children = (
+				64FF1C572AE5D030007A98D7 /* CoursesListViewController2.swift */,
+				640F100D2AEEBD18004D2FFA /* CoursesViewModel.swift */,
+				640F100F2AEEBD59004D2FFA /* CoursesDataSource.swift */,
+				640F10112AEEBE07004D2FFA /* CoursesDelegate.swift */,
+				640F10132AEEC2E8004D2FFA /* CoursesListViewController.swift */,
+				64FF1C5B2AE63B38007A98D7 /* Course.swift */,
+				64FF1C5D2AE664BF007A98D7 /* CourseTableViewCell.swift */,
+			);
+			name = CoursesList;
+			sourceTree = "<group>";
+		};
+		640F10152AEEC439004D2FFA /* Reservation */ = {
+			isa = PBXGroup;
+			children = (
+				640F10162AEEC81A004D2FFA /* ReservationsDataSourceDelegate.swift */,
+				640F10182AEEC8A0004D2FFA /* ReservationsDataFetching.swift */,
+				640F101A2AEECEEE004D2FFA /* ReservationsUISetup.swift */,
+				640F101C2AEED084004D2FFA /* ReservationsViewController.swift */,
+				6418A5662AEAD53400EB0E26 /* ReservationsViewController2.swift */,
+			);
+			name = Reservation;
+			sourceTree = "<group>";
+		};
+		640F101E2AEED2AD004D2FFA /* ReservationUser */ = {
+			isa = PBXGroup;
+			children = (
+				640F101F2AEED2DA004D2FFA /* UIDesignHelper.swift */,
+				640F10212AEED346004D2FFA /* CoursesDataFetcher.swift */,
+				640F10232AEED369004D2FFA /* CourseDeletionHelper.swift */,
+				6418A5682AEAEDE700EB0E26 /* ReservationUsersViewController.swift */,
+			);
+			name = ReservationUser;
+			sourceTree = "<group>";
+		};
+		640F10252AEED692004D2FFA /* ReservedUsers */ = {
+			isa = PBXGroup;
+			children = (
+				640F10262AEED6C3004D2FFA /* ReservedUIDesignHelper.swift */,
+				640F10282AEED775004D2FFA /* ReservedUsersDataFetcher.swift */,
+				6418A56B2AEB02E200EB0E26 /* ReservedUsersListViewController.swift */,
+			);
+			name = ReservedUsers;
+			sourceTree = "<group>";
+		};
 		64FF1C312AE5C6A3007A98D7 = {
 			isa = PBXGroup;
 			children = (
@@ -112,22 +202,20 @@
 		64FF1C3C2AE5C6A3007A98D7 /* rezervasyon */ = {
 			isa = PBXGroup;
 			children = (
-				640F0FFE2AEEB607004D2FFA /* Login */,
 				64FF1C3D2AE5C6A3007A98D7 /* AppDelegate.swift */,
 				64FF1C3F2AE5C6A3007A98D7 /* SceneDelegate.swift */,
 				64FF1C412AE5C6A3007A98D7 /* ViewController.swift */,
 				64FF1C602AE665FB007A98D7 /* DetailViewController.swift */,
-				64FF1C512AE5CA02007A98D7 /* AddCourseViewController.swift */,
-				6418A5662AEAD53400EB0E26 /* ReservationsViewController.swift */,
+				640F0FFE2AEEB607004D2FFA /* Login */,
+				640F10052AEEB925004D2FFA /* AddCourse */,
+				640F100C2AEEBCFB004D2FFA /* CoursesList */,
+				640F101E2AEED2AD004D2FFA /* ReservationUser */,
+				640F10152AEEC439004D2FFA /* Reservation */,
+				640F10252AEED692004D2FFA /* ReservedUsers */,
 				648E0A642AE6AC8000355577 /* UserModel.swift */,
-				64FF1C5B2AE63B38007A98D7 /* Course.swift */,
-				64FF1C572AE5D030007A98D7 /* CoursesListViewController.swift */,
-				64FF1C5D2AE664BF007A98D7 /* CourseTableViewCell.swift */,
-				6418A5682AEAEDE700EB0E26 /* ReservationUsersViewController.swift */,
-				6418A56B2AEB02E200EB0E26 /* ReservedUsersListViewController.swift */,
+				64B0F53B2AEE943C00992988 /* SplashViewController.swift */,
 				64FF1C432AE5C6A3007A98D7 /* Main.storyboard */,
 				64FF1C462AE5C6A3007A98D7 /* Assets.xcassets */,
-				64B0F53B2AEE943C00992988 /* SplashViewController.swift */,
 				64FF1C482AE5C6A3007A98D7 /* LaunchScreen.storyboard */,
 				64FF1C4B2AE5C6A3007A98D7 /* Info.plist */,
 				64FF1C552AE5CD09007A98D7 /* GoogleService-Info.plist */,
@@ -262,19 +350,35 @@
 			files = (
 				648E0A622AE69E4500355577 /* LoginViewController2.swift in Sources */,
 				6418A56C2AEB02E200EB0E26 /* ReservedUsersListViewController.swift in Sources */,
+				640F10242AEED369004D2FFA /* CourseDeletionHelper.swift in Sources */,
+				640F101D2AEED084004D2FFA /* ReservationsViewController.swift in Sources */,
 				640F10022AEEB639004D2FFA /* FirebaseAuthManager.swift in Sources */,
-				6418A5672AEAD53400EB0E26 /* ReservationsViewController.swift in Sources */,
+				6418A5672AEAD53400EB0E26 /* ReservationsViewController2.swift in Sources */,
+				640F10122AEEBE07004D2FFA /* CoursesDelegate.swift in Sources */,
+				640F10222AEED346004D2FFA /* CoursesDataFetcher.swift in Sources */,
 				6418A5692AEAEDE700EB0E26 /* ReservationUsersViewController.swift in Sources */,
 				640F10002AEEB621004D2FFA /* LoginUIComponentsBuilder.swift in Sources */,
 				64FF1C5C2AE63B38007A98D7 /* Course.swift in Sources */,
+				640F10172AEEC81A004D2FFA /* ReservationsDataSourceDelegate.swift in Sources */,
 				64B0F53C2AEE943C00992988 /* SplashViewController.swift in Sources */,
+				640F10142AEEC2E8004D2FFA /* CoursesListViewController.swift in Sources */,
+				640F10292AEED775004D2FFA /* ReservedUsersDataFetcher.swift in Sources */,
+				640F10202AEED2DA004D2FFA /* UIDesignHelper.swift in Sources */,
+				640F10272AEED6C3004D2FFA /* ReservedUIDesignHelper.swift in Sources */,
 				64FF1C422AE5C6A3007A98D7 /* ViewController.swift in Sources */,
-				64FF1C582AE5D030007A98D7 /* CoursesListViewController.swift in Sources */,
-				64FF1C522AE5CA02007A98D7 /* AddCourseViewController.swift in Sources */,
+				640F10102AEEBD59004D2FFA /* CoursesDataSource.swift in Sources */,
+				640F100E2AEEBD18004D2FFA /* CoursesViewModel.swift in Sources */,
+				640F10092AEEB95C004D2FFA /* FirestoreCourseManager.swift in Sources */,
+				64FF1C582AE5D030007A98D7 /* CoursesListViewController2.swift in Sources */,
+				640F101B2AEECEEE004D2FFA /* ReservationsUISetup.swift in Sources */,
+				64FF1C522AE5CA02007A98D7 /* AddCourseViewController2.swift in Sources */,
 				64FF1C3E2AE5C6A3007A98D7 /* AppDelegate.swift in Sources */,
+				640F10192AEEC8A0004D2FFA /* ReservationsDataFetching.swift in Sources */,
+				640F10072AEEB949004D2FFA /* CourseUIComponentsBuilder.swift in Sources */,
 				64FF1C402AE5C6A3007A98D7 /* SceneDelegate.swift in Sources */,
 				640F10042AEEB65D004D2FFA /* LoginViewController.swift in Sources */,
 				64FF1C5E2AE664BF007A98D7 /* CourseTableViewCell.swift in Sources */,
+				640F100B2AEEB983004D2FFA /* AddCourseViewController.swift in Sources */,
 				648E0A652AE6AC8000355577 /* UserModel.swift in Sources */,
 				64FF1C612AE665FB007A98D7 /* DetailViewController.swift in Sources */,
 			);
