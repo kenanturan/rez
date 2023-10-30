@@ -2,24 +2,63 @@
 //  AddCourseViewController.swift
 //  rezervasyon
 //
-//  Created by Kenan TURAN on 29.10.2023.
+//  Created by Kenan TURAN on 23.10.2023.
 //
 
-import Foundation
 import UIKit
+import FirebaseFirestore
 
 class AddCourseViewController: UIViewController {
-    
     // UI Components
-    private let courseNameTextField = CourseUIComponentsBuilder.createCourseNameTextField()
-    private let datePicker = CourseUIComponentsBuilder.createDatePicker(mode: .date)
-    private let startTimePicker = CourseUIComponentsBuilder.createDatePicker(mode: .time)
-    private let endTimePicker = CourseUIComponentsBuilder.createDatePicker(mode: .time)
-    private let courseCapacityTextField = CourseUIComponentsBuilder.createCourseCapacityTextField()
-    private lazy var addButton = CourseUIComponentsBuilder.createAddButton(target: self, action: #selector(addButtonTapped))
-    
-    private var firestoreCourseManager = FirestoreCourseManager()
+    private var db = Firestore.firestore()
 
+    private let courseNameTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Ders Adı"
+        textField.borderStyle = .roundedRect
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let datePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
+    
+    private let startTimePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .time
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
+    
+    private let endTimePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .time
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
+    
+    private let courseCapacityTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Ders Kapasitesi"
+        textField.keyboardType = .numberPad
+        textField.borderStyle = .roundedRect
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
+    private let addButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Ekle", for: .normal)
+        button.backgroundColor = .blue
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white  // Zemin rengini beyaz yap
@@ -37,7 +76,31 @@ class AddCourseViewController: UIViewController {
     }
 
     private func setupConstraints() {
-        // (Bu kısım aynı şekilde kalabilir.)
+        NSLayoutConstraint.activate([
+            courseNameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            courseNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            courseNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            datePicker.topAnchor.constraint(equalTo: courseNameTextField.bottomAnchor, constant: 20),
+            datePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            datePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            startTimePicker.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 20),
+            startTimePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
+            endTimePicker.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 20),
+            endTimePicker.leadingAnchor.constraint(equalTo: startTimePicker.trailingAnchor, constant: 20),
+            endTimePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            endTimePicker.widthAnchor.constraint(equalTo: startTimePicker.widthAnchor),
+            
+            courseCapacityTextField.topAnchor.constraint(equalTo: endTimePicker.bottomAnchor, constant: 20),
+            courseCapacityTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            courseCapacityTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            addButton.topAnchor.constraint(equalTo: courseCapacityTextField.bottomAnchor, constant: 20),
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+        ])
     }
     
     @objc private func addButtonTapped() {
@@ -55,15 +118,21 @@ class AddCourseViewController: UIViewController {
             return
         }
 
+        addCourse(courseName: courseName, courseDate: courseDate, startTime: startTime, endTime: endTime, capacity: courseCapacity)
+    }
+
+    private func addCourse(courseName: String, courseDate: Date, startTime: Date, endTime: Date, capacity: Int) {
         let courseData: [String: Any] = [
             "courseName": courseName,
             "courseDate": courseDate,
             "startTime": startTime,
             "endTime": endTime,
-            "capacity": courseCapacity
+            "capacity": capacity
         ]
 
-        firestoreCourseManager.addCourse(courseData: courseData) { error in
+        // Firestore'a veri eklemek için kodunuzu buraya ekleyebilirsiniz.
+        // Örnek:
+        db.collection("courses").addDocument(data: courseData) { error in
             if let error = error {
                 print("Ders eklenirken hata: \(error)")
             } else {

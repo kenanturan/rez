@@ -44,23 +44,132 @@ class ViewController: UIViewController {
             redirectToLogin()
         }
     }
+    func setupLogoutButton() {
+        let logoutButton = UIButton()
+        logoutButton.setTitle("Çıkış Yap", for: .normal)
+        logoutButton.backgroundColor = .darkGray
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
+        view.addSubview(logoutButton)
 
-
+        NSLayoutConstraint.activate([
+            logoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            logoutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoutButton.widthAnchor.constraint(equalToConstant: 200),
+            logoutButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    func clearButtons() {
+        view.subviews.forEach({ if $0 is UIButton { $0.removeFromSuperview() } })
+    }
     func setupAdminUI() {
-        let addButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: (view.frame.height - 120) / 2, width: 200, height: 50))
+        clearButtons() // Önceki butonları kaldır
+        // Önceki butonları kaldırıp tekrar ekleyerek çakışmaların önüne geçelim.
+        view.subviews.forEach({ if $0 is UIButton { $0.removeFromSuperview() } })
+        
+        let addButton = UIButton()
         addButton.setTitle("Ders Ekle", for: .normal)
         addButton.backgroundColor = .blue
+        addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.addTarget(self, action: #selector(goToAddCourse), for: .touchUpInside)
         view.addSubview(addButton)
 
-        setupDefaultUI()
+        let userAddButton = UIButton()
+        userAddButton.setTitle("Kullanıcı Ekle", for: .normal)
+        userAddButton.backgroundColor = .orange
+        userAddButton.translatesAutoresizingMaskIntoConstraints = false
+        userAddButton.addTarget(self, action: #selector(goToAddUser), for: .touchUpInside)
+        view.addSubview(userAddButton)
+
+        let viewReservedUsersButton = UIButton()
+        viewReservedUsersButton.setTitle("Rezervasyon Yapanlar", for: .normal)
+        viewReservedUsersButton.backgroundColor = .red
+        viewReservedUsersButton.translatesAutoresizingMaskIntoConstraints = false
+        viewReservedUsersButton.addTarget(self, action: #selector(viewReservedUsers), for: .touchUpInside)
+        view.addSubview(viewReservedUsersButton)
+        
+        let listButton = UIButton()
+        listButton.setTitle("Dersleri Listele", for: .normal)
+        listButton.backgroundColor = .green
+        listButton.translatesAutoresizingMaskIntoConstraints = false
+        listButton.addTarget(self, action: #selector(goToCoursesList), for: .touchUpInside)
+        view.addSubview(listButton)
+
+        let reservationsButton = UIButton()
+        reservationsButton.setTitle("Rezervasyonlarım", for: .normal)
+        reservationsButton.backgroundColor = .purple
+        reservationsButton.translatesAutoresizingMaskIntoConstraints = false
+        reservationsButton.addTarget(self, action: #selector(goToReservations), for: .touchUpInside)
+        view.addSubview(reservationsButton)
+
+        // Kısıtlamaları ayarlayalım
+        NSLayoutConstraint.activate([
+            addButton.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 20),
+            addButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addButton.widthAnchor.constraint(equalToConstant: 200),
+            addButton.heightAnchor.constraint(equalToConstant: 50),
+
+            userAddButton.topAnchor.constraint(equalTo: addButton.bottomAnchor, constant: 10),
+            userAddButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            userAddButton.widthAnchor.constraint(equalToConstant: 200),
+            userAddButton.heightAnchor.constraint(equalToConstant: 50),
+
+            viewReservedUsersButton.topAnchor.constraint(equalTo: userAddButton.bottomAnchor, constant: 10),
+            viewReservedUsersButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            viewReservedUsersButton.widthAnchor.constraint(equalToConstant: 200),
+            viewReservedUsersButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            listButton.topAnchor.constraint(equalTo: viewReservedUsersButton.bottomAnchor, constant: 10),
+            listButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            listButton.widthAnchor.constraint(equalToConstant: 200),
+            listButton.heightAnchor.constraint(equalToConstant: 50),
+
+            reservationsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            reservationsButton.topAnchor.constraint(equalTo: listButton.bottomAnchor, constant: 10),
+            reservationsButton.widthAnchor.constraint(equalToConstant: 200),
+            reservationsButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+
+        setupLogoutButton() // Her iki UI'da da ortak olan "Çıkış Yap" butonunu ekleyin
     }
-    func setupLogoutButton() {
-        let logoutButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: view.frame.height - 100, width: 200, height: 50))
-        logoutButton.setTitle("Çıkış Yap", for: .normal)
-        logoutButton.backgroundColor = .darkGray
-        logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
-        view.addSubview(logoutButton)
+    
+    func setupDefaultUI() {
+        clearButtons() // Önceki butonları kaldır
+        let listButton = UIButton()
+        listButton.setTitle("Dersleri Listele", for: .normal)
+        listButton.backgroundColor = .green
+        listButton.translatesAutoresizingMaskIntoConstraints = false
+        listButton.addTarget(self, action: #selector(goToCoursesList), for: .touchUpInside)
+        view.addSubview(listButton)
+
+        let reservationsButton = UIButton()
+        reservationsButton.setTitle("Rezervasyonlarım", for: .normal)
+        reservationsButton.backgroundColor = .purple
+        reservationsButton.translatesAutoresizingMaskIntoConstraints = false
+        reservationsButton.addTarget(self, action: #selector(goToReservations), for: .touchUpInside)
+        view.addSubview(reservationsButton)
+
+        NSLayoutConstraint.activate([
+            listButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            listButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 10),
+            listButton.widthAnchor.constraint(equalToConstant: 200),
+            listButton.heightAnchor.constraint(equalToConstant: 50),
+
+            reservationsButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            reservationsButton.topAnchor.constraint(equalTo: listButton.bottomAnchor, constant: 20),
+            reservationsButton.widthAnchor.constraint(equalToConstant: 200),
+            reservationsButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        setupLogoutButton() // Her iki UI'da da ortak olan "Çıkış Yap" butonunu ekleyin
+    }
+
+
+
+    func redirectToLogin() {
+        let loginVC = LoginViewController()
+        let navigationController = UINavigationController(rootViewController: loginVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true, completion: nil)
     }
     @objc func logoutTapped() {
         do {
@@ -70,16 +179,6 @@ class ViewController: UIViewController {
             print("Oturumu kapatma hatası: %@", signOutError)
         }
     }
-    func redirectToLogin() {
-        let loginVC = LoginViewController()
-        let navigationController = UINavigationController(rootViewController: loginVC)
-        navigationController.modalPresentationStyle = .fullScreen
-        self.present(navigationController, animated: true, completion: nil)
-    }
-
-
-
-    
 
     @objc func goToAddCourse() {
         let addCourseVC = AddCourseViewController()
@@ -118,32 +217,6 @@ class ViewController: UIViewController {
         }
     }
 
-    func setupDefaultUI() {
-        let listButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: (view.frame.height) / 2 + 10, width: 200, height: 50))
-        listButton.setTitle("Dersleri Listele", for: .normal)
-        listButton.backgroundColor = .green
-        listButton.addTarget(self, action: #selector(goToCoursesList), for: .touchUpInside)
-        view.addSubview(listButton)
-
-        let userAddButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: listButton.frame.maxY + 20, width: 200, height: 50))
-        userAddButton.setTitle("Kullanıcı Ekle", for: .normal)
-        userAddButton.backgroundColor = .orange
-        userAddButton.addTarget(self, action: #selector(goToAddUser), for: .touchUpInside)
-        view.addSubview(userAddButton)
-
-        let reservationsButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: userAddButton.frame.maxY + 20, width: 200, height: 50))
-        reservationsButton.setTitle("Rezervasyonlarım", for: .normal)
-        reservationsButton.backgroundColor = .purple
-        reservationsButton.addTarget(self, action: #selector(goToReservations), for: .touchUpInside)
-        view.addSubview(reservationsButton)
-        
-        let viewReservedUsersButton = UIButton(frame: CGRect(x: (view.frame.width - 200) / 2, y: reservationsButton.frame.maxY + 20, width: 200, height: 50))
-        viewReservedUsersButton.setTitle("Rezervasyon Yapanlar", for: .normal)
-        viewReservedUsersButton.backgroundColor = .red
-        viewReservedUsersButton.addTarget(self, action: #selector(viewReservedUsers), for: .touchUpInside)
-        view.addSubview(viewReservedUsersButton)
-
-    }
     @objc func viewReservedUsers() {
         let reservationUsersVC = ReservationUsersViewController()
         self.navigationController?.pushViewController(reservationUsersVC, animated: true)

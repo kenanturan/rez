@@ -1,20 +1,37 @@
 //
 //  LoginViewController.swift
-//  rezervasyon
+//  Pods
 //
-//  Created by Kenan TURAN on 29.10.2023.
+//  Created by Kenan TURAN on 23.10.2023.
 //
 
 import Foundation
-import UIKit
+import Firebase
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
 
-    private let emailTextField = LoginUIComponentsBuilder.createEmailTextField()
-    private let passwordTextField = LoginUIComponentsBuilder.createPasswordTextField()
-    private lazy var loginButton = LoginUIComponentsBuilder.createLoginButton(target: self, action: #selector(handleLogin))
-    
-    private let authManager = FirebaseAuthManager()
+    private let emailTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "E-posta"
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+
+    private let passwordTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Şifre"
+        textField.isSecureTextEntry = true
+        textField.borderStyle = .roundedRect
+        return textField
+    }()
+
+    private let loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Giriş Yap", for: .normal)
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +52,14 @@ class LoginViewController: UIViewController {
         ])
     }
 
+//    func redirectToMainScreen() {
+//        let mainVC = ViewController()
+//        let navigationController = UINavigationController(rootViewController: mainVC)
+//        navigationController.modalPresentationStyle = .fullScreen
+//        self.present(navigationController, animated: true)
+//    }
+
+
     @objc private func handleLogin() {
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
@@ -42,17 +67,17 @@ class LoginViewController: UIViewController {
             return
         }
 
-        authManager.signIn(withEmail: email, password: password) { [weak self] result in
-            switch result {
-            case .success(_):
-                let mainVC = ViewController()
-                let navigationController = UINavigationController(rootViewController: mainVC)
-                navigationController.modalPresentationStyle = .fullScreen
-                self?.present(navigationController, animated: true)
-                
-            case .failure(let error):
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+            if let error = error {
                 print("Giriş yapılırken hata oluştu: \(error)")
+                return
             }
+
+            // Giriş başarılı
+            let mainVC = ViewController()
+            let navigationController = UINavigationController(rootViewController: mainVC)
+            navigationController.modalPresentationStyle = .fullScreen // Tam ekran sunum için
+            self?.present(navigationController, animated: true)
         }
     }
 }
