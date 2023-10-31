@@ -46,7 +46,8 @@ class CoursesListViewController: UIViewController, UITableViewDelegate, UITableV
             guard let self = self else { return }
             
             if let error = error {
-                print("Error fetching courses: \(error.localizedDescription)")
+                let localizedError = String(format: NSLocalizedString("errorFetchingCourses", comment: ""), error.localizedDescription)
+                print(localizedError)
                 return
             }
             
@@ -69,9 +70,11 @@ class CoursesListViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: courseCellIdentifier, for: indexPath)
         let course = courses[indexPath.row]
         cell.textLabel?.text = course.courseName
-        cell.detailTextLabel?.text = "Kapasite: \(course.capacity)"
+        let capacityText = String(format: NSLocalizedString("capacityPrefix", comment: ""), "\(course.capacity)")
+        cell.detailTextLabel?.text = capacityText
         return cell
     }
+
 
 
 
@@ -103,13 +106,17 @@ class CoursesListViewController: UIViewController, UITableViewDelegate, UITableV
 
     // MARK: - Course Deletion
     func confirmDeleteCourse(at index: Int) {
-        let alert = UIAlertController(title: "Ders Silme", message: "Bu dersi silmek istediğinizden emin misiniz?", preferredStyle: .alert)
-
-        let deleteAction = UIAlertAction(title: "Evet", style: .destructive) { [weak self] _ in
+        let alert = UIAlertController(
+            title: NSLocalizedString("confirmDeleteTitle", comment: ""),
+            message: NSLocalizedString("confirmDeleteMessage", comment: ""),
+            preferredStyle: .alert
+        )
+        
+        let deleteAction = UIAlertAction(title: NSLocalizedString("yes", comment: ""), style: .destructive) { [weak self] _ in
             self?.deleteCourse(at: index)
         }
 
-        let cancelAction = UIAlertAction(title: "İptal", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil)
 
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)

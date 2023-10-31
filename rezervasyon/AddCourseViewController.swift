@@ -14,7 +14,7 @@ class AddCourseViewController: UIViewController {
 
     private let courseNameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Ders Adı"
+        textField.placeholder = NSLocalizedString("courseNamePlaceholder", comment: "")
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
@@ -43,7 +43,7 @@ class AddCourseViewController: UIViewController {
     
     private let courseCapacityTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Ders Kapasitesi"
+        textField.placeholder = NSLocalizedString("courseCapacityPlaceholder", comment: "")
         textField.keyboardType = .numberPad
         textField.borderStyle = .roundedRect
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +52,7 @@ class AddCourseViewController: UIViewController {
     
     private let addButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Ekle", for: .normal)
+        button.setTitle(NSLocalizedString("addButtonTitle", comment: ""), for: .normal)
         button.backgroundColor = .black
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
@@ -105,7 +105,7 @@ class AddCourseViewController: UIViewController {
     
     @objc private func addButtonTapped() {
         guard let courseName = courseNameTextField.text, !courseName.isEmpty else {
-            print("Lütfen ders adını girin.")
+            print(NSLocalizedString("courseNameEmptyError", comment: ""))
             return
         }
 
@@ -114,7 +114,7 @@ class AddCourseViewController: UIViewController {
         let endTime = endTimePicker.date
 
         guard let courseCapacity = Int(courseCapacityTextField.text ?? "0"), courseCapacity > 0 else {
-            print("Lütfen geçerli bir ders kapasitesi girin.")
+            print(NSLocalizedString("validCourseCapacityError", comment: ""))
             return
         }
 
@@ -132,17 +132,19 @@ class AddCourseViewController: UIViewController {
 
         db.collection("courses").addDocument(data: courseData) { [weak self] error in
             if let error = error {
-                print("Ders eklenirken hata: \(error)")
-                self?.showAlert(title: "Hata", message: "Ders eklenemedi: \(error.localizedDescription)")
+                let errorMessage = NSLocalizedString("courseAdditionError", comment: "") + error.localizedDescription
+                print(errorMessage)
+                self?.showAlert(title: NSLocalizedString("errorTitle", comment: ""), message: errorMessage)
             } else {
-                print("Ders başarıyla eklendi!")
-                self?.showAlert(title: "Başarılı", message: "Ders Eklendi")
+                print(NSLocalizedString("courseAddedSuccess", comment: ""))
+                self?.showAlert(title: NSLocalizedString("successTitle", comment: ""), message: NSLocalizedString("courseAddedSuccess", comment: ""))
             }
         }
     }
+
     private func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("okActionTitle", comment: ""), style: .default))
         self.present(alert, animated: true)
     }
 }

@@ -27,7 +27,7 @@ class ReservedUsersListViewController: UIViewController, UITableViewDelegate, UI
                     let email = data["email"] as? String ?? ""
                     self.userEmails.append(email)
                 } else {
-                    self.userEmails.append("E-posta bulunamadı")
+                    self.userEmails.append(NSLocalizedString("emailNotFound", comment: ""))
                 }
                 group.leave()
             }
@@ -39,7 +39,7 @@ class ReservedUsersListViewController: UIViewController, UITableViewDelegate, UI
     }
 
     private func setupUI() {
-        self.title = "Rezerve Kullanıcılar"
+        self.title = NSLocalizedString("title", comment: "")
         tableView = UITableView(frame: self.view.bounds, style: .plain)
         tableView.delegate = self
         tableView.dataSource = self

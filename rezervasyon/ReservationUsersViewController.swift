@@ -41,9 +41,10 @@ class ReservationUsersViewController: UIViewController, UITableViewDelegate, UIT
             guard let self = self else { return }
             
             if let error = error {
-                print("Error fetching courses: \(error.localizedDescription)")
+                print(String(format: NSLocalizedString("errorFetchingCourses", comment: ""), error.localizedDescription))
                 return
             }
+
             
             self.courses = querySnapshot?.documents.compactMap { document in
                 return Course(document: document)
@@ -61,11 +62,13 @@ class ReservationUsersViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: courseCellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: courseCellIdentifier, for: indexPath) as UITableViewCell
         let course = courses[indexPath.row]
         cell.textLabel?.text = course.courseName
+        cell.detailTextLabel?.text = "Kontenjan: \(course.capacity)" // Örnek kapasite metni
         return cell
     }
+
 
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -91,13 +94,24 @@ class ReservationUsersViewController: UIViewController, UITableViewDelegate, UIT
 
     // MARK: - Course Deletion
     func confirmDeleteCourse(at index: Int) {
-        let alert = UIAlertController(title: "Ders Silme", message: "Bu dersi silmek istediğinizden emin misiniz?", preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: NSLocalizedString("confirmDeleteTitle", comment: ""),
+            message: NSLocalizedString("confirmDeleteMessage", comment: ""),
+            preferredStyle: .alert
+        )
 
-        let deleteAction = UIAlertAction(title: "Evet", style: .destructive) { [weak self] _ in
+        let deleteAction = UIAlertAction(
+            title: NSLocalizedString("yes", comment: ""),
+            style: .destructive
+        ) { [weak self] _ in
             self?.deleteCourse(at: index)
         }
 
-        let cancelAction = UIAlertAction(title: "İptal", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(
+            title: NSLocalizedString("cancel", comment: ""),
+            style: .cancel,
+            handler: nil
+        )
 
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
@@ -114,9 +128,10 @@ class ReservationUsersViewController: UIViewController, UITableViewDelegate, UIT
 
             DispatchQueue.main.async {
                 if let error = error {
-                    print("Error deleting course: \(error.localizedDescription)")
+                    print(String(format: NSLocalizedString("errorDeletingCourse", comment: ""), error.localizedDescription))
                     return
                 }
+
                 
                 self.courses.remove(at: index)
                 self.tableView.reloadData()

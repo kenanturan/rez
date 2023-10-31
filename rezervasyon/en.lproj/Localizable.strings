@@ -1,0 +1,81 @@
+/* 
+  Localizable.strings
+  Pods
+
+  Created by Kenan TURAN on 31.10.2023.
+  
+*/
+/* LoginViewController */
+"email_placeholder" = "Email";
+"password_placeholder" = "Password";
+"login_button_title" = "Login";
+"empty_fields_error" = "Please fill in all fields.";
+"login_error" = "An error occurred while logging in: ";
+/* ViewController */
+"logoutButtonTitle" = "Logout";
+"addCourseButtonTitle" = "Add Course";
+"addUserButtonTitle" = "Add User";
+"viewReservedUsersButtonTitle" = "View Reserved Users";
+"listCoursesButtonTitle" = "List Courses";
+"myReservationsButtonTitle" = "My Reservations";
+"addUserAlertTitle" = "Add User";
+"addUserAlertMessage" = "Enter email and password";
+"emailPlaceholder" = "Email";
+"passwordPlaceholder" = "Password";
+"addActionTitle" = "Add";
+"cancelActionTitle" = "Cancel";
+/* DetailViewController */
+"courseNameLabel" = "Course Name: %@ ";
+"courseDateLabel" = "Course Date: %@ ";
+"startTimeLabel" = "Start Time: %@ ";
+"endTimeLabel" = "End Time: %@ ";
+"capacityLabel" = "Capacity: %@ ";
+"reserveButtonTitle" = "Reserve";
+"cancelReservationButtonTitle" = "Cancel Reservation";
+"reservationSuccessMessage" = "Your reservation for %@ has been made.";
+"reservationCancelSuccessMessage" = "Your reservation for %@ has been canceled.";
+"capacityFullErrorMessage" = "There are no spots available for this course or you have already made a reservation.";
+"notReservedErrorMessage" = "You have not made a reservation for this course.";
+"reservationErrorMessage" = "You have already made a reservation for this course.";
+"errorTitle" = "Error";
+"errorMessage" = "An error occurred. Please try again.";
+/* AddCourseViewController */
+"courseNamePlaceholder" = "Course Name %@ ";
+"courseCapacityPlaceholder" = "Course Capacity %@ ";
+"addButtonTitle" = "Add %@ ";
+"courseNameEmptyError" = "Please enter the course name. %@ ";
+"validCourseCapacityError" = "Please enter a valid course capacity.";
+"courseAdditionError" = "An error occurred while adding the course: ";
+"courseAddedSuccess" = "The course was added successfully!";
+"errorTitle" = "Error";
+"successTitle" = "Success";
+"okActionTitle" = "OK";
+/* ReservationsViewController */
+"errorFetchingReservations" = "An error occurred while fetching reservations: %@";
+/* Localizable.strings (English) */
+
+/* Alert dialog */
+"confirmDeleteTitle" = "Delete Course";
+"confirmDeleteMessage" = "Are you sure you want to delete this course?";
+"yes" = "Yes";
+"cancel" = "Cancel";
+
+/* Error messages */
+"errorFetchingCourses" = "Error fetching courses: %@";
+"errorDeletingCourse" = "Error deleting course: %@";
+
+/* Error messages */
+"errorFetchingReservations" = "Error occurred while fetching reservations: %@";
+"errorTitle" = "Error";
+
+/* Cell Identifiers */
+"reservationCellIdentifier" = "reservationCell";
+
+/* View Titles */
+"reservationsTitle" = "Your Reservations";
+
+/* Detail View */
+"detailTitle" = "Reservation Details";
+"courseNameTitle" = "Course Name";
+/* Course capacity prefix */
+"capacityPrefix" = "Capacity: %@";

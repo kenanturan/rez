@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     }
     func setupLogoutButton() {
         let logoutButton = UIButton()
-        logoutButton.setTitle("Çıkış Yap", for: .normal)
+        logoutButton.setTitle(NSLocalizedString("logoutButtonTitle", comment: "Çıkış yap butonu metni"), for: .normal)
         logoutButton.backgroundColor = .darkGray
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         logoutButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
@@ -68,35 +68,35 @@ class ViewController: UIViewController {
         view.subviews.forEach({ if $0 is UIButton { $0.removeFromSuperview() } })
         
         let addButton = UIButton()
-        addButton.setTitle("Ders Ekle", for: .normal)
+        addButton.setTitle(NSLocalizedString("addCourseButtonTitle", comment: ""), for: .normal)
         addButton.backgroundColor = .black
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.addTarget(self, action: #selector(goToAddCourse), for: .touchUpInside)
         view.addSubview(addButton)
 
         let userAddButton = UIButton()
-        userAddButton.setTitle("Kullanıcı Ekle", for: .normal)
+        userAddButton.setTitle(NSLocalizedString("addUserButtonTitle", comment: ""), for: .normal)
         userAddButton.backgroundColor = .red
         userAddButton.translatesAutoresizingMaskIntoConstraints = false
         userAddButton.addTarget(self, action: #selector(goToAddUser), for: .touchUpInside)
         view.addSubview(userAddButton)
 
         let viewReservedUsersButton = UIButton()
-        viewReservedUsersButton.setTitle("Rezervasyon Yapanlar", for: .normal)
+        viewReservedUsersButton.setTitle(NSLocalizedString("viewReservedUsersButtonTitle", comment: ""), for: .normal)
         viewReservedUsersButton.backgroundColor = .black
         viewReservedUsersButton.translatesAutoresizingMaskIntoConstraints = false
         viewReservedUsersButton.addTarget(self, action: #selector(viewReservedUsers), for: .touchUpInside)
         view.addSubview(viewReservedUsersButton)
         
         let listButton = UIButton()
-        listButton.setTitle("Dersleri Listele", for: .normal)
+        listButton.setTitle(NSLocalizedString("listCoursesButtonTitle", comment: ""), for: .normal)
         listButton.backgroundColor = .red
         listButton.translatesAutoresizingMaskIntoConstraints = false
         listButton.addTarget(self, action: #selector(goToCoursesList), for: .touchUpInside)
         view.addSubview(listButton)
 
         let reservationsButton = UIButton()
-        reservationsButton.setTitle("Rezervasyonlarım", for: .normal)
+        reservationsButton.setTitle(NSLocalizedString("myReservationsButtonTitle", comment: ""), for: .normal)
         reservationsButton.backgroundColor = .black
         reservationsButton.translatesAutoresizingMaskIntoConstraints = false
         reservationsButton.addTarget(self, action: #selector(goToReservations), for: .touchUpInside)
@@ -136,14 +136,14 @@ class ViewController: UIViewController {
     func setupDefaultUI() {
         clearButtons() // Önceki butonları kaldır
         let listButton = UIButton()
-        listButton.setTitle("Dersleri Listele", for: .normal)
+        listButton.setTitle(NSLocalizedString("listCoursesButtonTitle", comment: ""), for: .normal)
         listButton.backgroundColor = .black
         listButton.translatesAutoresizingMaskIntoConstraints = false
         listButton.addTarget(self, action: #selector(goToCoursesList), for: .touchUpInside)
         view.addSubview(listButton)
 
         let reservationsButton = UIButton()
-        reservationsButton.setTitle("Rezervasyonlarım", for: .normal)
+        reservationsButton.setTitle(NSLocalizedString("myReservationsButtonTitle", comment: ""), for: .normal)
         reservationsButton.backgroundColor = .red
         reservationsButton.translatesAutoresizingMaskIntoConstraints = false
         reservationsButton.addTarget(self, action: #selector(goToReservations), for: .touchUpInside)
@@ -203,18 +203,24 @@ class ViewController: UIViewController {
 
 
     @objc func goToAddUser() {
-        let alertController = UIAlertController(title: "Kullanıcı Ekle", message: "E-posta ve şifre girin", preferredStyle: .alert)
-
+        let alertController = UIAlertController(
+            title: NSLocalizedString("addUserAlertTitle", comment: ""),
+            message: NSLocalizedString("addUserAlertMessage", comment: ""),
+            preferredStyle: .alert
+        )
         alertController.addTextField { (textField) in
-            textField.placeholder = "E-posta"
+            textField.placeholder = NSLocalizedString("emailPlaceholder", comment: "")
         }
 
         alertController.addTextField { (textField) in
             textField.isSecureTextEntry = true
-            textField.placeholder = "Şifre"
+            textField.placeholder = NSLocalizedString("passwordPlaceholder", comment: "")
         }
 
-        let addAction = UIAlertAction(title: "Ekle", style: .default) { (_) in
+        let addAction = UIAlertAction(
+            title: NSLocalizedString("addActionTitle", comment: ""),
+            style: .default
+        ) { (_) in
             guard let emailField = alertController.textFields?[0], let passwordField = alertController.textFields?[1] else {
                 return
             }
@@ -248,8 +254,11 @@ class ViewController: UIViewController {
             }
         }
 
-        let cancelAction = UIAlertAction(title: "İptal", style: .cancel, handler: nil)
-
+        let cancelAction = UIAlertAction(
+            title: NSLocalizedString("cancelActionTitle", comment: ""),
+            style: .cancel,
+            handler: nil
+        )
         alertController.addAction(addAction)
         alertController.addAction(cancelAction)
 

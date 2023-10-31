@@ -5,7 +5,7 @@
 //  Created by Kenan TURAN on 23.10.2023.
 //
 
-import Foundation
+import UIKit
 import Firebase
 import FirebaseAuth
 
@@ -18,35 +18,44 @@ class LoginViewController: UIViewController {
         return imageView
     }()
 
-
     private let emailTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "E-posta"
         textField.borderStyle = .roundedRect
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
 
     private let passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Şifre"
         textField.isSecureTextEntry = true
         textField.borderStyle = .roundedRect
+        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
 
     private let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Giriş Yap", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         return button
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .white
+        
+        setupLocalizedStrings()
+        setupLayout()
+    }
+    
+    private func setupLocalizedStrings() {
+        emailTextField.placeholder = NSLocalizedString("email_placeholder", comment: "")
+        passwordTextField.placeholder = NSLocalizedString("password_placeholder", comment: "")
+        loginButton.setTitle(NSLocalizedString("login_button_title", comment: ""), for: .normal)
+    }
 
-        // Logo ekleniyor
+    private func setupLayout() {
+        // Logo ImageView Setup
         view.addSubview(logoImageView)
         NSLayoutConstraint.activate([
             logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -55,14 +64,13 @@ class LoginViewController: UIViewController {
             logoImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5)
         ])
 
+        // StackView Setup
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
         stackView.axis = .vertical
         stackView.spacing = 20
         stackView.translatesAutoresizingMaskIntoConstraints = false
-
         view.addSubview(stackView)
 
-        // Logo'nun altından biraz boşluk bırakarak stackView'i ekliyoruz
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 30),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -70,17 +78,16 @@ class LoginViewController: UIViewController {
         ])
     }
 
-
     @objc private func handleLogin() {
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
-            print("Lütfen tüm alanları doldurun.")
+            showAlert(message: NSLocalizedString("empty_fields_error", comment: ""))
             return
         }
 
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
             if let error = error {
-                print("Giriş yapılırken hata oluştu: \(error)")
+                self?.showAlert(message: NSLocalizedString("login_error", comment: "") + "\(error)")
                 return
             }
 
@@ -90,5 +97,11 @@ class LoginViewController: UIViewController {
             navigationController.modalPresentationStyle = .fullScreen // Tam ekran sunum için
             self?.present(navigationController, animated: true)
         }
+    }
+    
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default))
+        present(alert, animated: true)
     }
 }

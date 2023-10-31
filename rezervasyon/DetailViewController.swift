@@ -14,14 +14,14 @@ class DetailViewController: UIViewController {
     private var didReserve: Bool = false
     private let reserveButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Rezervasyon Yap", for: .normal)
+        button.setTitle(NSLocalizedString("reserveButtonTitle", comment: ""), for: .normal)
         return button
     }()
     
 
     private let cancelReservationButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Rezervasyon Sil", for: .normal)
+        button.setTitle(NSLocalizedString("cancelReservationButtonTitle", comment: ""), for: .normal)
         return button
     }()
 
@@ -66,22 +66,22 @@ class DetailViewController: UIViewController {
         dateFormatter.locale = Locale(identifier: "tr_TR")
         
         // Ders Adı
-        courseNameLabel.text = "Ders Adı: \(course.courseName)"
-        
+        courseNameLabel.text = String(format: NSLocalizedString("courseNameLabel", comment: ""), course.courseName)
+
         // Ders Tarihi
         dateFormatter.dateFormat = "dd.MM.yyyy"
         let formattedDate = dateFormatter.string(from: course.date)
-        courseDateLabel.text = "Ders Tarihi: \(formattedDate)"
-        
+        courseDateLabel.text = String(format: NSLocalizedString("courseDateLabel", comment: ""), formattedDate)
+
         // Başlama ve Bitiş Saati
         dateFormatter.dateFormat = "HH:mm"
         let formattedStartTime = dateFormatter.string(from: course.startTime)
         let formattedEndTime = dateFormatter.string(from: course.endTime)
-        startTimeLabel.text = "Başlama Saati: \(formattedStartTime)"
-        endTimeLabel.text = "Bitiş Saati: \(formattedEndTime)"
-        
+        startTimeLabel.text = String(format: NSLocalizedString("startTimeLabel", comment: ""), formattedStartTime)
+        endTimeLabel.text = String(format: NSLocalizedString("endTimeLabel", comment: ""), formattedEndTime)
+
         // Kapasite
-        capacityLabel.text = "Kapasite: \(course.capacity)"
+        capacityLabel.text = String(format: NSLocalizedString("capacityLabel", comment: ""), String(course.capacity))
         if course.capacity < course.capacity {
             didReserve = true
         } else {
@@ -143,8 +143,10 @@ class DetailViewController: UIViewController {
                 courseNameLabel.text = "\(course!.courseName) rezervasyonunuz yapılmıştır."
             } else {
                 // Kullanıcı zaten rezervasyon yapmış
-                let alert = UIAlertController(title: "Uyarı", message: "Zaten bu ders için rezervasyon yapmışsınız.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+                let alert = UIAlertController(title: NSLocalizedString("errorTitle", comment: ""),
+                                              message: NSLocalizedString("reservationErrorMessage", comment: ""),
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
                 present(alert, animated: true)
             }
         }
@@ -162,8 +164,10 @@ class DetailViewController: UIViewController {
                 courseNameLabel.text = "\(course!.courseName) rezervasyonunuz silinmiştir."
             } else {
                 // Kullanıcı bu ders için rezervasyon yapmamış
-                let alert = UIAlertController(title: "Uyarı", message: "Bu ders için rezervasyon yapmamışsınız.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+                let alert = UIAlertController(title: NSLocalizedString("errorTitle", comment: ""),
+                                              message: NSLocalizedString("notReservedErrorMessage", comment: ""),
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default))
                 present(alert, animated: true)
             }
         }

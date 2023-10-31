@@ -1,0 +1,80 @@
+/* 
+  Localizable.strings
+  Pods
+
+  Created by Kenan TURAN on 31.10.2023.
+  
+*/
+/* LoginViewController */
+"email_placeholder" = "E-posta";
+"password_placeholder" = "Şifre";
+"login_button_title" = "Giriş Yap";
+"empty_fields_error" = "Lütfen tüm alanları doldurun.";
+"login_error" = "Giriş yapılırken hata oluştu: ";
+/* ViewController */
+"logoutButtonTitle" = "Çıkış Yap";
+"addCourseButtonTitle" = "Ders Ekle";
+"addUserButtonTitle" = "Kullanıcı Ekle";
+"viewReservedUsersButtonTitle" = "Rezervasyon Yapanlar";
+"listCoursesButtonTitle" = "Dersleri Listele";
+"myReservationsButtonTitle" = "Rezervasyonlarım";
+"addUserAlertTitle" = "Kullanıcı Ekle";
+"addUserAlertMessage" = "E-posta ve şifre girin";
+"emailPlaceholder" = "E-posta";
+"passwordPlaceholder" = "Şifre";
+"addActionTitle" = "Ekle";
+"cancelActionTitle" = "İptal";
+/* DetailViewController */
+"courseNameLabel" = "Ders Adı: %@ ";
+"courseDateLabel" = "Ders Tarihi: %@ ";
+"startTimeLabel" = "Başlama Saati: %@ ";
+"endTimeLabel" = "Bitiş Saati: %@ ";
+"capacityLabel" = "Kapasite: %@";
+"reserveButtonTitle" = "Rezervasyon Yap";
+"cancelReservationButtonTitle" = "Rezervasyon İptali";
+"reservationSuccessMessage" = "%@ için rezervasyonunuz yapılmıştır.";
+"reservationCancelSuccessMessage" = "%@ için rezervasyonunuz iptal edilmiştir.";
+"capacityFullErrorMessage" = "Bu ders için yer kalmamıştır ya da zaten rezervasyon yapmışsınız.";
+"notReservedErrorMessage" = "Bu ders için rezervasyon yapmamışsınız.";
+"reservationErrorMessage" = "Zaten bu ders için rezervasyon yapmışsınız.";
+"errorTitle" = "Hata";
+"errorMessage" = "Bir hata oluştu. Lütfen tekrar deneyin.";
+/* AddCourseViewController */
+"courseNamePlaceholder" = "Ders Adı";
+"courseCapacityPlaceholder" = "Ders Kapasitesi";
+"addButtonTitle" = "Ekle";
+"courseNameEmptyError" = "Lütfen ders adını girin.";
+"validCourseCapacityError" = "Lütfen geçerli bir ders kapasitesi girin.";
+"courseAdditionError" = "Ders eklenirken hata: ";
+"courseAddedSuccess" = "Ders başarıyla eklendi!";
+"errorTitle" = "Hata";
+"successTitle" = "Başarılı";
+"okActionTitle" = "Tamam";
+/* ReservationsViewController */
+"errorFetchingReservations" = "Rezervasyonları getirirken hata oluştu: %@";
+/* Localizable.strings (Turkish) */
+
+/* Alert dialog */
+"confirmDeleteTitle" = "Ders Silme";
+"confirmDeleteMessage" = "Bu dersi silmek istediğinizden emin misiniz?";
+"yes" = "Evet";
+"cancel" = "İptal";
+
+/* Error messages */
+"errorFetchingCourses" = "Dersler çekilirken hata oluştu: %@";
+"errorDeletingCourse" = "Ders silinirken hata oluştu: %@";
+/* Error messages */
+"errorFetchingReservations" = "Rezervasyonlar getirilirken hata oluştu: %@";
+"errorTitle" = "Hata";
+
+/* Cell Identifiers */
+"reservationCellIdentifier" = "rezervasyonHücresi";
+
+/* View Titles */
+"reservationsTitle" = "Rezervasyonlarınız";
+
+/* Detail View */
+"detailTitle" = "Rezervasyon Detayları";
+"courseNameTitle" = "Kurs Adı";
+/* Kurs kapasite öneki */
+"capacityPrefix" = "Kontenjan: %@";

@@ -15274,6 +15274,7 @@
 		640156844B1151DFE199637B61F9C4A2 /* FIRResetPasswordRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRResetPasswordRequest.m; path = FirebaseAuth/Sources/Backend/RPC/FIRResetPasswordRequest.m; sourceTree = "<group>"; };
 		640857E0D43B735C597C4666022BD8B0 /* FIRFieldPath.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRFieldPath.h; path = Firestore/Source/Public/FirebaseFirestore/FIRFieldPath.h; sourceTree = "<group>"; };
 		640C3628C834DAE5640AA20B68A3D61A /* x_req.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = x_req.c; path = src/crypto/x509/x_req.c; sourceTree = "<group>"; };
+		640F10352AF1383A004D2FFA /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ../rezervasyon/Localizable.strings; sourceTree = "<group>"; };
 		6418A56A2AEB02DE00EB0E26 /* ReservedUsersListViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReservedUsersListViewController2.swift; path = ../rezervasyon/ReservedUsersListViewController2.swift; sourceTree = "<group>"; };
 		64431A89728FF64FD970281189ED7309 /* dynamic_ot.upbdefs.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = dynamic_ot.upbdefs.c; path = "src/core/ext/upbdefs-generated/envoy/config/trace/v3/dynamic_ot.upbdefs.c"; sourceTree = "<group>"; };
 		64450B1F8322FC1F5F95AC5BA49AE010 /* iocp.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = iocp.cc; path = src/core/lib/event_engine/windows/iocp.cc; sourceTree = "<group>"; };
@@ -23278,6 +23279,7 @@
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
+				640F10352AF1383A004D2FFA /* Localizable.strings */,
 				6418A56A2AEB02DE00EB0E26 /* ReservedUsersListViewController2.swift */,
 				648E0A662AE701F600355577 /* UsersListViewController.swift */,
 				648E0A632AE6A93A00355577 /* UserModel.swift */,

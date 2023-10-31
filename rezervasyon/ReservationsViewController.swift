@@ -53,7 +53,8 @@ class ReservationsViewController: UIViewController, UITableViewDataSource, UITab
         let db = Firestore.firestore()
         db.collection("courses").whereField("reservedUserIDs", arrayContains: currentUserID).getDocuments { (querySnapshot, error) in
             if let error = error {
-                print("Rezervasyonları getirirken hata oluştu: \(error.localizedDescription)")
+                let localizedError = String(format: NSLocalizedString("errorFetchingReservations", comment: ""), error.localizedDescription)
+                print(localizedError)
                 completion([])
                 return
             }
