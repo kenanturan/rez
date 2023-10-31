@@ -69,35 +69,35 @@ class ViewController: UIViewController {
         
         let addButton = UIButton()
         addButton.setTitle("Ders Ekle", for: .normal)
-        addButton.backgroundColor = .blue
+        addButton.backgroundColor = .black
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.addTarget(self, action: #selector(goToAddCourse), for: .touchUpInside)
         view.addSubview(addButton)
 
         let userAddButton = UIButton()
         userAddButton.setTitle("Kullanıcı Ekle", for: .normal)
-        userAddButton.backgroundColor = .orange
+        userAddButton.backgroundColor = .red
         userAddButton.translatesAutoresizingMaskIntoConstraints = false
         userAddButton.addTarget(self, action: #selector(goToAddUser), for: .touchUpInside)
         view.addSubview(userAddButton)
 
         let viewReservedUsersButton = UIButton()
         viewReservedUsersButton.setTitle("Rezervasyon Yapanlar", for: .normal)
-        viewReservedUsersButton.backgroundColor = .red
+        viewReservedUsersButton.backgroundColor = .black
         viewReservedUsersButton.translatesAutoresizingMaskIntoConstraints = false
         viewReservedUsersButton.addTarget(self, action: #selector(viewReservedUsers), for: .touchUpInside)
         view.addSubview(viewReservedUsersButton)
         
         let listButton = UIButton()
         listButton.setTitle("Dersleri Listele", for: .normal)
-        listButton.backgroundColor = .green
+        listButton.backgroundColor = .red
         listButton.translatesAutoresizingMaskIntoConstraints = false
         listButton.addTarget(self, action: #selector(goToCoursesList), for: .touchUpInside)
         view.addSubview(listButton)
 
         let reservationsButton = UIButton()
         reservationsButton.setTitle("Rezervasyonlarım", for: .normal)
-        reservationsButton.backgroundColor = .purple
+        reservationsButton.backgroundColor = .black
         reservationsButton.translatesAutoresizingMaskIntoConstraints = false
         reservationsButton.addTarget(self, action: #selector(goToReservations), for: .touchUpInside)
         view.addSubview(reservationsButton)
@@ -137,14 +137,14 @@ class ViewController: UIViewController {
         clearButtons() // Önceki butonları kaldır
         let listButton = UIButton()
         listButton.setTitle("Dersleri Listele", for: .normal)
-        listButton.backgroundColor = .green
+        listButton.backgroundColor = .black
         listButton.translatesAutoresizingMaskIntoConstraints = false
         listButton.addTarget(self, action: #selector(goToCoursesList), for: .touchUpInside)
         view.addSubview(listButton)
 
         let reservationsButton = UIButton()
         reservationsButton.setTitle("Rezervasyonlarım", for: .normal)
-        reservationsButton.backgroundColor = .purple
+        reservationsButton.backgroundColor = .red
         reservationsButton.translatesAutoresizingMaskIntoConstraints = false
         reservationsButton.addTarget(self, action: #selector(goToReservations), for: .touchUpInside)
         view.addSubview(reservationsButton)

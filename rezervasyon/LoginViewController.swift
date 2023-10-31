@@ -10,6 +10,14 @@ import Firebase
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
+    
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "Kimura.png"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+
 
     private let emailTextField: UITextField = {
         let textField = UITextField()
@@ -35,8 +43,17 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = .white
+
+        // Logo ekleniyor
+        view.addSubview(logoImageView)
+        NSLayoutConstraint.activate([
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            logoImageView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5)
+        ])
 
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
         stackView.axis = .vertical
@@ -44,20 +61,14 @@ class LoginViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(stackView)
-        
+
+        // Logo'nun altından biraz boşluk bırakarak stackView'i ekliyoruz
         NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 30),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75)
         ])
     }
-
-//    func redirectToMainScreen() {
-//        let mainVC = ViewController()
-//        let navigationController = UINavigationController(rootViewController: mainVC)
-//        navigationController.modalPresentationStyle = .fullScreen
-//        self.present(navigationController, animated: true)
-//    }
 
 
     @objc private func handleLogin() {

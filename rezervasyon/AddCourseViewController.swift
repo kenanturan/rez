@@ -53,7 +53,7 @@ class AddCourseViewController: UIViewController {
     private let addButton: UIButton = {
         let button = UIButton()
         button.setTitle("Ekle", for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = .black
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
@@ -130,14 +130,19 @@ class AddCourseViewController: UIViewController {
             "capacity": capacity
         ]
 
-        // Firestore'a veri eklemek için kodunuzu buraya ekleyebilirsiniz.
-        // Örnek:
-        db.collection("courses").addDocument(data: courseData) { error in
+        db.collection("courses").addDocument(data: courseData) { [weak self] error in
             if let error = error {
                 print("Ders eklenirken hata: \(error)")
+                self?.showAlert(title: "Hata", message: "Ders eklenemedi: \(error.localizedDescription)")
             } else {
                 print("Ders başarıyla eklendi!")
+                self?.showAlert(title: "Başarılı", message: "Ders Eklendi")
             }
         }
+    }
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tamam", style: .default))
+        self.present(alert, animated: true)
     }
 }
