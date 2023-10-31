@@ -9,13 +9,18 @@ class CoursesListViewController: UIViewController, UITableViewDelegate, UITableV
 
     // Variables
     var courses: [Course] = []
-    
+    var currentUserRole: UserRole = .user
+
     // UI Components
     private var tableView: UITableView!
 
     // MARK: - View Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        UserService.shared.fetchCurrentUser { [weak self] user in
+            self?.currentUserRole = user?.role ?? .user
+        }
         fetchCourses()
     }
     
@@ -86,8 +91,9 @@ class CoursesListViewController: UIViewController, UITableViewDelegate, UITableV
 
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return currentUserRole == .admin
     }
+
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {

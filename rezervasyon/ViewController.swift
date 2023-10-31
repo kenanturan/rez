@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         ])
 
         
-        fetchUser { (user) in
+        UserService.shared.fetchCurrentUser { (user) in
             print("Firebase'dan gelen rol: \(user?.role.rawValue ?? "Bilinmiyor")")
             DispatchQueue.main.async {
                 if let userRole = user?.role, userRole == .admin {
@@ -195,27 +195,6 @@ class ViewController: UIViewController {
         self.navigationController?.pushViewController(reservationsVC, animated: true)
     }
 
-    func fetchUser(completion: @escaping (User?) -> Void) {
-        guard let currentUserUID = Auth.auth().currentUser?.uid else {
-            completion(nil)
-            return
-        }
-
-        let db = Firestore.firestore()
-        db.collection("users").document(currentUserUID).getDocument { (document, error) in
-            if let document = document, document.exists, let data = document.data() {
-                let uid = data["uid"] as? String ?? ""
-                let email = data["email"] as? String ?? ""
-                let roleString = data["role"] as? String ?? "user"
-                let role = UserRole(rawValue: roleString) ?? .user
-
-                let user = User(uid: uid, email: email, role: role)
-                completion(user)
-            } else {
-                completion(nil)
-            }
-        }
-    }
 
     @objc func viewReservedUsers() {
         let reservationUsersVC = ReservationUsersViewController()
