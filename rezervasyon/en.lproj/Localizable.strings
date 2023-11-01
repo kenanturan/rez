@@ -11,7 +11,20 @@
 "login_button_title" = "Login";
 "empty_fields_error" = "Please fill in all fields.";
 "login_error" = "An error occurred while logging in: ";
-/* ViewController */
+/* Additional Localizations for LoginViewController */
+"ok" = "OK";
+"login_success" = "Login successful!";
+"user_not_found_error" = "User not found. Please sign up.";
+"wrong_password_error" = "Incorrect password. Please try again.";
+"user_disabled_error" = "This user account has been disabled.";
+"internal_error" = "An internal error occurred. Please try again later.";
+
+/* General Error Message */
+"general_error_message" = "An error occurred. Please check and try again.";
+
+/* Alerts */
+"error" = "Error";
+"login_error_title" = "Login Error";/* ViewController */
 "logoutButtonTitle" = "Logout";
 "addCourseButtonTitle" = "Add Course";
 "addUserButtonTitle" = "Add User";

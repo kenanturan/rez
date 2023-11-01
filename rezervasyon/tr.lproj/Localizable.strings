@@ -11,6 +11,20 @@
 "login_button_title" = "Giriş Yap";
 "empty_fields_error" = "Lütfen tüm alanları doldurun.";
 "login_error" = "Giriş yapılırken hata oluştu: ";
+/* Additional Localizations for LoginViewController */
+"ok" = "Tamam";
+"login_success" = "Giriş başarılı!";
+"user_not_found_error" = "Kullanıcı bulunamadı. Lütfen kayıt olun.";
+"wrong_password_error" = "Hatalı şifre. Lütfen tekrar deneyin.";
+"user_disabled_error" = "Bu kullanıcı hesabı engellenmiştir.";
+"internal_error" = "Bir iç hata oluştu. Lütfen daha sonra tekrar deneyin.";
+
+/* General Error Message */
+"general_error_message" = "Hata oluştu. Lütfen kontrol edin, tekrar deneyin.";
+
+/* Alerts */
+"error" = "Hata";
+"login_error_title" = "Giriş Hatası";
 /* ViewController */
 "logoutButtonTitle" = "Çıkış Yap";
 "addCourseButtonTitle" = "Ders Ekle";

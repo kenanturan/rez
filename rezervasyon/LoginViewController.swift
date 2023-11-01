@@ -81,13 +81,28 @@ class LoginViewController: UIViewController {
     @objc private func handleLogin() {
         guard let email = emailTextField.text, !email.isEmpty,
               let password = passwordTextField.text, !password.isEmpty else {
-            showAlert(message: NSLocalizedString("empty_fields_error", comment: ""))
+            showAlert(title: "Hata", message: NSLocalizedString("empty_fields_error", comment: ""))
             return
         }
 
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
-            if let error = error {
-                self?.showAlert(message: NSLocalizedString("login_error", comment: "") + "\(error)")
+            if let error = error as NSError? {
+                var errorMessage = NSLocalizedString("login_error", comment: "")
+                let errorCode = AuthErrorCode.Code(rawValue: error.code)
+                switch errorCode {
+//                case .userNotFound:
+//                    errorMessage = "Kullanıcı bulunamadı. Lütfen kayıt olun."
+//                case .wrongPassword:
+//                    errorMessage = "Hatalı şifre. Lütfen tekrar deneyin."
+//                case .userDisabled:
+//                    errorMessage = "Bu kullanıcı hesabı engellenmiştir."
+                case .internalError:
+                    errorMessage = NSLocalizedString("internal_error", comment: "")
+                default:
+                    errorMessage += " \(error.localizedDescription)"
+                }
+                
+                self?.showAlert(title: NSLocalizedString("login_error_title", comment: ""), message: errorMessage)
                 return
             }
 
@@ -98,9 +113,9 @@ class LoginViewController: UIViewController {
             self?.present(navigationController, animated: true)
         }
     }
-    
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .default))
         present(alert, animated: true)
     }
