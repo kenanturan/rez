@@ -4,18 +4,20 @@
 //
 //  Created by Kenan TURAN on 1.11.2023.
 //
-//goToAddCourse()
-//goToCoursesList()
-//goToReservations()
-//viewReservedUsers()
+
 import Foundation
 import UIKit
+import FirebaseFirestore
+import FirebaseAuth
 
-class NavigationManager: UIViewController {
+class NavigationManager {
+    
+    static let shared = NavigationManager()
+
+    private init() {}
 
 
-
-    @objc func goToAddUser() {
+    func goToAddUser(from viewController: UIViewController) {
         let alertController = UIAlertController(
             title: NSLocalizedString("addUserAlertTitle", comment: ""),
             message: NSLocalizedString("addUserAlertMessage", comment: ""),
@@ -75,23 +77,23 @@ class NavigationManager: UIViewController {
         alertController.addAction(addAction)
         alertController.addAction(cancelAction)
 
-        self.present(alertController, animated: true, completion: nil)
+        viewController.present(alertController, animated: true, completion: nil)
     }
 
 
-    @objc func goToCoursesList() {
+    func goToCoursesList(from viewController: UIViewController) {
         let coursesListVC = CoursesListViewController()
-        self.navigationController?.pushViewController(coursesListVC, animated: true)
+        viewController.navigationController?.pushViewController(coursesListVC, animated: true)
     }
 
-    @objc func goToReservations() {
+    func goToReservations(from viewController: UIViewController) {
         let reservationsVC = ReservationsViewController()
-        self.navigationController?.pushViewController(reservationsVC, animated: true)
+        viewController.navigationController?.pushViewController(reservationsVC, animated: true)
     }
 
 
-    @objc func viewReservedUsers() {
+    func viewReservedUsers(from viewController: UIViewController) {
         let reservationUsersVC = ReservationUsersViewController()
-        self.navigationController?.pushViewController(reservationUsersVC, animated: true)
+        viewController.navigationController?.pushViewController(reservationUsersVC, animated: true)
     }
 }
